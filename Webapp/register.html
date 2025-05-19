@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 350px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 43%;
+        }
+         select {
+            width: 350px;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input{
+            width: 330px;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            margin-top: 10px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Register</h2>
+    <form id="registerForm">
+        <input type="text" id="name" placeholder="Enter Name" required>
+        <input type="password" id="password" placeholder="Create Password" required>
+
+        <div class="input-group">
+            <select id="gender" required>
+                <option value="" disabled selected>Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="transgender">Transgender</option>
+            </select>
+            <input type="number" id="age" placeholder="Age" required>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="location" placeholder="Location" required>
+            <input type="text" id="pincode" placeholder="Pin Code (Optional)">
+        </div>
+
+        <input type="text" id="mobile" placeholder="Enter Mobile Number" required>
+        <input type="text" id="upi" placeholder="Enter UPI ID or Mobile Number for Online Payment" required>
+        <select id="serviceProvider" required>
+            <option value="" disabled selected>Are you a Service Provider?</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <button type="submit">Register</button>
+    </form>
+    <p>Already have an account? <a href="./index.html">Login</a></p>
+</div>
+
+<script>
+    document.getElementById("registerForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        alert("Registration Successful!");
+        window.location.replace("./index.html");
+
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetItDone - Freelancer Skills</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <h1>GET IT DONE</h1>
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><button id="loginLogoutBtn" onclick="handleAuthAction()">Login</button></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>Find the Right Person for Your Work</h2>
+    <p>From Expert Service Providers to Everyday Service Providers!</p>
+</section>
+
+<section class="categories">
+    <h2>Our Services</h2>
+    <div class="category-list">
+        <div class="category" onclick="location.href='services.html'">🚗 Car Driver <span class="count">12</span></div>
+        <div class="category" onclick="location.href='services.html'">🎨 Painter <span class="count">8</span></div>
+        <div class="category" onclick="location.href='services.html'">💻 Software Developer <span class="count">15</span></div>
+        <div class="category" onclick="location.href='services.html'">🔧 Electrician <span class="count">10</span></div>
+        <div class="category" onclick="location.href='services.html'">🏗️ Carpenter <span class="count">7</span></div>
+        <div class="category" onclick="location.href='services.html'">📸 Photographer <span class="count">5</span></div>
+        <div class="category" onclick="location.href='services.html'">🚚 Movers & Packers <span class="count">6</span></div>
+        <div class="category" onclick="location.href='services.html'">🍽️ Chef <span class="count">9</span></div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 GetItDone. All rights reserved.</p>
+</footer>
+
+<!-- Login Popup -->
+<div id="loginPopup" class="popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closeLoginPopup()">&times;</span>
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required><br>
+            <input type="password" id="password" placeholder="Password" required><br>
+            <button type="submit">Login</button><br>
+        </form>
+        <p>Don't have an account? <a href="#" onclick="openRegisterPopup()">Register</a></p>
+    </div>
+</div>
+
+<!-- Registration Popup -->
+<div id="registerPopup" class="popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closeRegisterPopup()">&times;</span>
+        <h2>Register</h2>
+        <form id="registerForm">
+            <input type="text" id="name" placeholder="Enter Name" required>
+            <input type="password" id="password" placeholder="Create Password" required>
+
+            <div class="input-group">
+                <select id="gender" required>
+                    <option value="" disabled selected>Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="transgender">Transgender</option>
+                </select>
+                <input type="number" id="age" placeholder="Age" required>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="location" placeholder="Location" required>
+                <input type="text" id="pincode" placeholder="Pin Code (Optional)">
+            </div>
+
+            <input type="text" id="mobile" placeholder="Enter Mobile Number" required>
+            <input type="text" id="upi" placeholder="Enter UPI ID or Mobile Number for Online Payment" required>
+            <select id="serviceProvider" required>
+                <option value="" disabled selected>Are you a Service Provider?</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="#" onclick="openLoginPopup()">Login</a></p>
+    </div>
+</div>
+
+<script>
+    function openLoginPopup() {
+        closeRegisterPopup(); // Close registration popup before opening login
+        document.getElementById("loginPopup").style.display = "flex";
+        document.body.classList.add("blur-background");
+    }
+
+    function closeLoginPopup() {
+        document.getElementById("loginPopup").style.display = "none";
+        document.body.classList.remove("blur-background");
+    }
+
+    function openRegisterPopup() {
+        closeLoginPopup(); // Close login popup before opening register
+        document.getElementById("registerPopup").style.display = "flex";
+        document.body.classList.add("blur-background");
+    }
+
+    function closeRegisterPopup() {
+        document.getElementById("registerPopup").style.display = "none";
+        document.body.classList.remove("blur-background");
+    }
+
+    function updateLoginButton() {
+        const loginBtn = document.getElementById("loginLogoutBtn");
+        if (localStorage.getItem("isLoggedIn") === "true") {
+            loginBtn.textContent = "Logout";
+            loginBtn.onclick = logout;
+        } else {
+            loginBtn.textContent = "Login";
+            loginBtn.onclick = openLoginPopup;
+        }
+    }
+
+    document.getElementById("registerForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        alert("Registration Successful!");
+        closeRegisterPopup();
+    });
+
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        const username = document.getElementById("username").value;
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("username", username);
+        updateLoginButton();
+        closeLoginPopup();
+        alert("Login Successful!");
+    });
+
+    function logout() {
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("username");
+        updateLoginButton();
+        alert("You have been logged out.");
+    }
+
+    document.addEventListener("DOMContentLoaded", updateLoginButton);
+
+    setInterval(updateLoginButton, 40000);
+</script>
+
+<style>
+    body {
+    background-image: url('/FirstProject/src/images/dash.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: black;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+header, h1{
+color:#333;
+margin-left:80px;
+}
+    header {
+        background:transparent;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 0 15px;
+    }
+
+    nav ul li a,
+    nav ul li button {
+        text-decoration: none;
+        color: white;
+        background: transparent;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+        padding: 10px 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    nav ul li button {
+        border-radius: 5px;
+        padding: 8px 15px;
+    }
+
+    nav ul li button:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+.hero {
+    padding: 100px 20px;
+    color: black;
+    font-size: 25px;
+    text-align: right;
+    width: 50%;
+    margin-left: auto;
+    margin-right: 50px;
+}
+
+
+    .categories {
+        background: transparent;
+        padding: 20px 10px;
+        border-radius: 4px;
+        margin: 20px auto;
+        max-width: 80%;
+        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(6px);
+    }
+
+    .category-list {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .category {
+        background: #B0E0E6;
+        color: #333;
+        padding: 10px 15px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-size: 14px;
+    }
+
+    .category:hover {
+        background: #0056b3;
+    }
+
+    .popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+    }
+
+    .popup-content {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        width: 350px;
+        text-align: center;
+        position: relative;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 22px;
+        cursor: pointer;
+    }
+
+    .input-group {
+        display: flex;
+        gap: 10px;
+    }
+
+    .input-group input, .input-group select {
+        width: 48%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    input, select, button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    footer {
+        background: transparent;
+        color: #333;
+        padding: 10px;
+        text-align: center;
+        margin-top: 70px;
+    }
+</style>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Service Providers - GetItDone</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 350px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 22px;
+        }
+         select {
+            width: 96%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Search Service Providers</h1>
+    <form action="SearchServiceServlet" method="get">
+        <select name="serviceType" required>
+            <option value="">Select Service Type</option>
+            <option value="Expert">Expert Services</option>
+            <option value="Everyday">Everyday Services</option>
+        </select>
+        <select name="workMode" required>
+            <option value="">Select Work Mode</option>
+            <option value="Online">Online</option>
+            <option value="Offline">Offline</option>
+        </select>
+        <input type="text" name="location" placeholder="Enter location" required>
+        <button type="submit">Search</button>
+    </form>
+</div>
+</body>
+</html>
